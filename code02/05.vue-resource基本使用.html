@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.6.10.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+
+</head>
+
+<!-- 
+获取接口：http://www.liulongbin.top:3005/api/getprodlist
+添加接口：http://www.liulongbin.top:3005/api/addproduct
+删除接口：this.$http.get("http://www.liulongbin.top:3005/api/delproduct/" + id).then（） 
+-->
+<body>
+    <div id="app">
+        <input type="button" value="request.get" @click="getInfo">
+        <input type="button" value="request.post" @click="postInfo">
+        <input type="button" value="request.jsonp" @click="jsonpInfo">
+        <p>{{ body}}</p>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                body: '',
+            },
+            methods: {
+                getInfo(){
+                    this.$http.get('http://www.liulongbin.top:3005/api/get').then(function (result){
+                        console.log(this.body = result.body);
+                    })
+                },
+
+                postInfo(){
+                    this.$http.post('http://www.liulongbin.top:3005/api/post',{}).then(result => {
+                        console.log(result); 
+                    })
+                },
+            
+                jsonpInfo(){
+                    this.$http.jsonp('http://www.liulongbin.top:3005/api/jsonp').then(result => {
+                        console.log(result.body);
+                    })
+                }
+            }
+
+        })
+    
+    </script>
+</body>
+</html>

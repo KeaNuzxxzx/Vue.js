@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.6.10.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+</head>
+<body>
+    <div id="app">
+        <h3 id="h3">{{ msg }}</h3>
+        <input type="button" value="修改msg" @click="msg='no'">
+    </div>
+    <script>
+        
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: 'fuck',
+            },
+            methods: {},
+
+            // 1.在实例创建的时候首先执行
+            beforeCreate() {
+                
+            },
+            // 2.该函数执行时vue实例已进行初始化， 可调用实例的数据或方法
+            created() {
+            },
+
+            // 3.模板已经在内存中编译完毕 尚未渲染到浏览器
+            beforeMount() {
+                
+            },
+            
+            // 4.表示内存中的模板已经真实的挂载到了页面中, 用户已经可以看到渲染好的页面
+            mounted() {
+                
+            },
+
+            // 运行中的两个事件
+            beforeUpdate() {
+                // 界面中显示的数据仍然是旧数据 页面和数据扔未同步
+                console.log('页面中的数据是:' + document.getElementById('h3').innerText);
+                console.log('data中的数据是:' + this.msg);
+            },
+
+            // 改变后的数据已与页面中的数据进行了同步
+            updated() {
+                console.log('页面中的数据是:' + document.getElementById('h3').innerText);
+                console.log('data中的数据是:' + this.msg);
+            },
+        })
+    
+    </script>
+</body>
+</html>

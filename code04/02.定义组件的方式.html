@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.6.10.js"></script>
+</head>
+<body>
+    <div id="app">
+        <component :is="'com1'"></component>
+        <component :is="'logout'"></component>
+    </div>
+</body>
+<script>
+    var login = {
+        template: '<h1>123</h1>',
+    }
+    var logout = {
+        template: '<h1>logout</h1>'
+    }
+
+    Vue.component('com1', login)
+
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {},
+        components: {
+            logout
+        }
+    })
+</script>
+</html>

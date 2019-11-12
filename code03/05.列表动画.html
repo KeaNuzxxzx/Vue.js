@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.6.10.js"></script>
+    <style>
+        ul{
+            padding: 0;
+            
+        }
+        li{
+            border: 1px dashed #999;
+            margin: 5px;
+            line-height: 35px;
+            padding-left: 5px;
+            font-size: 12px;
+            list-style: none;
+        }
+        .v-enter, .v-leave-to{
+            opacity: 0;
+            transform: translateY(80px);
+        }
+        .v-enter-active, .v-leave-active{
+            transition: all 0.6s ease;
+        }
+        li:hover{
+            background-color: aqua;
+            transition: all 0.4s ease;
+        }
+        .v-move{
+            transition: all 0.5s ease;
+        }
+        .v-leave-active{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <label for="">
+                Id:
+                <input type="text" v-model="id">
+            </label>
+            <label for="">
+                Name:
+                <input type="text" v-model="name" @keyup.enter="add(id, name)">
+            </label>
+            <input type="button" value="添加" @click="add(id, name)">
+        </div>
+
+            <!-- 使用v-for循环出来的不能使用transition包裹, 需要使用transitionGroup 同时必须设置:key-->
+            <!-- 通过tag属性, 指定transition渲染为指定元素 默认渲染为span-->
+            <!-- appear实现入场效果 -->
+            <transition-group appear tag="ul">
+                <li v-for="(item, i) in list" :key="item.id" @click="del(i)">
+                    {{ item.id }} --- {{ item.name}}
+                </li>
+            </transition-group>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                name: '',
+                list: [
+                    { id: 1, name: 'qer'},
+                    { id: 2, name: 'asd'},
+                    { id: 3, name: 'zcv'},
+                    { id: 4, name: 'rty'}
+                ]
+            },
+            methods: {
+                add(id, name){
+                    this.list.push({id:id, name:name})
+                    this.id = ''
+                    this.name = ''
+                },
+                del(index){
+                    this.list.splice(index, 1)
+                }
+                    
+                
+            }
+        })
+    
+    </script>
+</body>
+</html>

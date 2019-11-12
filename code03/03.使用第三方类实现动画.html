@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.6.10.js"></script>
+    <link rel="stylesheet" href="./lib/animate.css">
+</head>
+<body>
+    <div id="app">
+        <input type="button" value="toggle" @click="flag=!flag">
+        <!-- :duration="毫秒值" 统一设置入场离场的时候的时长 -->
+        <transition enter-active-class="animated bounceIn" leave-active-class="animated bounceOut" :duration="{ enter:400, leave: 500 }">
+            <h2 v-if="flag">hello!!</h3>
+        </transition>
+        
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                flag: true,
+            },
+            methods: {}
+        })
+    
+    </script>
+</body>
+</html>

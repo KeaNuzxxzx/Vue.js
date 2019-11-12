@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue-2.6.10.js"></script>
+    <style>
+    .inner {
+        height: 150px;
+        background-color: aqua;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="inner" @click="divHandler">
+            <!-- 使用.stop阻止向父级冒泡触发父级事件 -->
+            <input value="click" type="button" @click.stop="btnHandler">
+        </div>
+
+        <div>
+            <!-- 阻止触发默认行为（跳转页面） -->
+            <a href="http://www.baidu.com" @click.prevent="linkclick">baidu.com</a>
+        </div>
+        <!-- .capture 捕获子级触发事件 -->
+        <!-- .self 只有元素自身被点击才会触发 不会阻止冒泡事件触发-->
+        <!-- .once 只触发一次事件处理函数 -->
+        <!-- 事件修饰符可串联 -->
+
+
+    </div>
+    <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+
+                },
+                methods:{
+                    divHandler(){
+                        console.log("2")
+                    },
+                    btnHandler(){
+                        console.log("1")
+                    },
+                    linkclick(){
+                        alert("触发链接跳转")
+                    }
+                }
+            })
+        </script>
+</body>
+</html>
