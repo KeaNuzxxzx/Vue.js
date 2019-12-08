@@ -44,6 +44,10 @@ module.exports = {
             {   // 处理字体文件
                 test: /\.(ttf|eot|svg|woff|woff2|otf)$/,
                 use: 'url-loader'
+            },
+            {
+                test: /\.js$/,
+                use: 'babel-loader', exclude: /node_modules/
             }
         ]
     }

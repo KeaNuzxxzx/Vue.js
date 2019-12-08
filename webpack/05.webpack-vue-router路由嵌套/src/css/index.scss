@@ -1,0 +1,17 @@
+html, body{
+    .box{
+        width: 220px;
+        height: 220px;
+
+        background: url('../images/demo.jpg');
+        background-size: cover;
+    }
+
+    .box2{
+        width: 220px;
+        height: 220px;
+
+        background: url('../images2/demo.jpg');
+        background-size: cover;
+    }
+}
